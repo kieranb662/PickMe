@@ -12,7 +12,7 @@ The three types of selections are -
 
 ## Copy Paste Example 
 
-```
+``` swift
 import SwiftUI
 import SelectMe
 
@@ -68,7 +68,7 @@ struct SelectableView_Previews: PreviewProvider {
 In order to make full use of styling selectable content, one must create a `SelectableStyle` conforming struct. 
 
 
-```
+``` swift
 public struct CoolSelectableStyle: SelectableStyle {
     public func makeBody(configuration: Self.Configuration) -> some View {
         configuration.view
@@ -85,7 +85,7 @@ public struct CoolSelectableStyle: SelectableStyle {
 
 The custom style struct contains a single method with a parameter `SelectableConfiguration` 
 
-```
+``` swift
 public struct SelectableConfiguration {
     public let view: AnyView
     public let isSelected: Bool
