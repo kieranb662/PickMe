@@ -29,6 +29,47 @@ public struct CoolSelectableStyle: SelectableStyle {
     }
 }
 
+struct PulseEffect<S: Shape>: ViewModifier {
+    
+    var shape: S
+    @State var isOn: Bool = false
+    
+    func body(content: Content) -> some View {
+        content.padding().background(ZStack {
+            
+            shape
+                .stroke(Color.yellow, lineWidth: 1)
+                .scaleEffect(self.isOn ? 2 : 1)
+                .opacity(self.isOn ? 0 : 1)
+                .animation(Animation.easeIn(duration: 1).repeatForever(autoreverses: false))
+             shape.stroke(Color.blue)
+        })
+            .onAppear {
+                self.isOn = true
+        }
+    }
+}
+
+
+extension View {
+    func pulse<S: Shape>(_ shape: S) -> some View  {
+        self.modifier(PulseEffect(shape: shape))
+    }
+}
+
+public struct PulseSelectableStyle: SelectableStyle {
+    public func makeBody(configuration: Self.Configuration) -> some View {
+        Group {
+            if configuration.isSelected {
+                configuration.view
+                .pulse(Circle())
+            }else {
+                configuration.view
+            }
+        }
+    }
+}
+
 struct SelectableView: View {
 //    @State var selection: Int = 1
 //    @State var selection: Int? = nil
@@ -39,10 +80,10 @@ struct SelectableView: View {
         HStack {
             Text("Select Me").padding()
                 .selectable(selection: $selection, id: 1)
-            .selectableStyle(CoolSelectableStyle())
+            
             Text("Or Me").padding()
                 .selectable(selection: $selection, id: 4)
-                
+                .selectableStyle(PulseSelectableStyle())
             Ellipse().fill(Color.purple)
                 .frame(width: 100, height: 40)
             .padding()
