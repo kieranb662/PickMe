@@ -1,6 +1,6 @@
 # PickMe
 
-[Example Gif](PickMe.gif)!
+![Example Gif](PickMe.gif)
 
 A SwiftUI Library for cascading styling of selectable view content. Use one of 3 `.selectable`  view modifiers depending upon the type of selection you are using. 
 
