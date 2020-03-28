@@ -14,7 +14,7 @@ The three types of selections are -
 
 ``` swift
 import SwiftUI
-import SelectMe
+import PickMe
 
 public struct CoolSelectableStyle: SelectableStyle {
     public func makeBody(configuration: Self.Configuration) -> some View {
