@@ -121,7 +121,7 @@ struct SelectableSet<H: Hashable>: ViewModifier {
 
 // MARK: - View Extensions
 @available(iOS 13.0, macOS 10.15, watchOS 6.0 , tvOS 13.0, *)
-extension View {
+public extension View {
     func selectable<H: Hashable>(selection: Binding<H>, id: H) -> some View {
         self.modifier(Selectable(selection: selection, id: id))
     }
